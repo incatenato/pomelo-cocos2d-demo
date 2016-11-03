@@ -17,7 +17,7 @@ __resources__["/main.js"] = {
     function entry(name, callback) {
       pomelo.init({host: config.GATE_HOST, port: config.GATE_PORT, log: true}, function() {
         pomelo.request('gate.gateHandler.queryEntry', {uid: name}, function(data) {
-          pomelo.disconnect();
+          //pomelo.disconnect();
 
           if (data.code === 2001) {
             alert('server error!');

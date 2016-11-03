@@ -1,0 +1,34 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 0,
+    "showFPS" : true,
+    "frameRate" : 60,
+    "noCache" : false,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+    "modules" : ["cocos2d","extensions"],
+    "jsList" : [
+        "src/resource.js",
+        "src/pomelo/pomelo-cocos2d-js.js",
+        "src/ctrl/LoadingCtrl.js",
+        "src/ctrl/GameCtrl.js",
+        "src/ctrl/CatCtrl.js",
+        "src/ctrl/WorkerCtrl.js",
+        "src/ctrl/BalloonCtrl.js",
+        "src/ctrl/ArrowCtrl.js",
+        "src/data/ListenerId.js",
+        "src/data/BaseGold.js",
+        "src/data/BaseRole.js",
+        "src/data/GameData.js",
+        "src/data/Role.js",
+        "src/network/NetWork.js",
+        "src/network/Protocols.js",
+        "src/network/MsgLayer.js",
+        "src/scene/GameScene.js",
+        "src/scene/LoadingScene.js",
+        "src/scene/HelloScene.js",
+        "src/tools/GameTool.js"
+    ]
+}

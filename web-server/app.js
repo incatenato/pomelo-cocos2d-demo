@@ -6,19 +6,19 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(app.router);
   app.set('view engine', 'jade');
-  app.set('views', __dirname + '/public');
+  app.set('views', __dirname + '/client/project');
   app.set('view options', {layout: false});
-  app.set('basepath', __dirname + '/public');
+  app.set('basepath', __dirname + '/client/project');
 });
 
 app.configure('development', function() {
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/client/project'));
 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function() {
 	var oneYear = 31557600000;
-	app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
+	app.use(express.static(__dirname + '/client/project', { maxAge: oneYear }));
 	app.use(express.errorHandler());
 });
 

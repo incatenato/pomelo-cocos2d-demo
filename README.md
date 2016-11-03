@@ -7,4 +7,4 @@ If you are using pomelo 0.2.x , you can check this branch [pomelo-0.2.5](https:/
 
 [Demo 详细说明](https://github.com/NetEase/pomelo/wiki/Tutorial-2----Treasures)
 
-[Demo Guide](https://github.com/NetEase/pomelo/wiki/Treasure)
+[Demo Guide](https://github.com/NetEase/pomelo/wiki/Treasure)# pomelo-cocos2d-demo
