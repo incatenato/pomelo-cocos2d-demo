@@ -11,7 +11,6 @@
     "modules" : ["cocos2d","extensions"],
     "jsList" : [
         "src/resource.js",
-        "src/pomelo/pomelo-cocos2d-js.js",
         "src/ctrl/LoadingCtrl.js",
         "src/ctrl/GameCtrl.js",
         "src/ctrl/CatCtrl.js",

@@ -50,14 +50,11 @@ var GameData ={
         // cc.log(this.roleArray["wuxiaofeng"]);
     },
 
-    addRole:function (player)
-    {
+    addRole:function (player) {
         var role ;
-        if(player.userId == SF_INFO.userId)
-        {
+        if(player.userId == SF_INFO.userId) {
             role = new Role();
             GameData.myRole = role;
-
         }
         else {
             role = new BaseRole();
@@ -69,6 +66,7 @@ var GameData ={
         role.positionIndex = player["pos"];
         cc.log("rolePositionIndex"+ role.positionIndex);
         role.position = GameTool.getPositionByIndex(role.positionIndex);
+        console.log("position:" + JSON.stringify(role.position));
         role.state = player["state"];
         role.curScore = player["curScore"];
         role.curRank = player["curRank"];
@@ -78,12 +76,10 @@ var GameData ={
 
         var miniRoleStr = "#map_4.png";
 
-        if(player.userId == SF_INFO.userId)
-        {
+        if(player.userId == SF_INFO.userId) {
             miniRoleStr = "#map_2.png";
         }
-        else if(player.userId == SF_INFO.pyUserId)
-        {
+        else if(player.userId == SF_INFO.pyUserId) {
             miniRoleStr = "#map_3.png";
         }
         var miniRole = new cc.Sprite(miniRoleStr);
@@ -91,8 +87,7 @@ var GameData ={
         this.miniMapLayer.addChild(miniRole);
         role.updateMiniMap();
 
-        if(player.userId == SF_INFO.userId)
-        {
+        if(player.userId == SF_INFO.userId) {
             GameData.myRole.updateCurrTileProperty();
             cc.eventManager.dispatchCustomEvent(ListenerId.updateScenePositionId);
         }
@@ -103,8 +98,7 @@ var GameData ={
     addGold:function (gold) {
 
         var tmpStr,type = gold["type"] ;
-        switch (type)
-        {
+        switch (type) {
             case 0:
                 tmpStr = "#t_1.png";
                 break;
@@ -131,8 +125,7 @@ var GameData ={
         }
 
         var tmpGold = new cc.Sprite(tmpStr);
-        if(type == 1|| type == 2 || type == 3)
-        {
+        if(type == 1|| type == 2 || type == 3) {
             tmpGold.setScale(0.7);
         }
         tmpGold.setTag(gold["pos"]);
@@ -147,8 +140,7 @@ var GameData ={
 
 
 
-    resetData:function()
-    {
+    resetData:function() {
 
     }
 };

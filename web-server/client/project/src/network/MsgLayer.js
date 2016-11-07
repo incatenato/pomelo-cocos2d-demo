@@ -64,15 +64,12 @@ var MsgLayer = cc.Layer.extend({
         for (var i in players) {
             var player = players[i];
             GameData.addRole(player);
-
         }
         isRoleInfoReady = true;//晓峰可以根据这个字段判断游戏是否开始
     },
 
     receiveAllGoldInfoMsg:function(event){
-        cc.log("sfdafasdfasdf");
         var data = event.getUserData();
-
         var golds = data["golds"];
         cc.log("golds length" + golds.length);
         for (var i in golds) {

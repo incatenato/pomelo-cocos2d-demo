@@ -46,6 +46,40 @@ handler.enterScene = function(msg, session, next) {
 };
 
 /**
+ * 初始化
+ * @param msg
+ * @param session
+ * @param next
+ */
+handler.initArea = function(msg, session, next){
+  var role = dataApi.role.random();
+  var player = new Player({id: msg.playerId, name: msg.name, kindId: role.id});
+  player.serverId = session.frontendId;
+  // console.log(player);
+
+  if (!area.addEntity(player)) {
+    logger.error("Add player to area faild! areaId : " + player.areaId);
+    next(new Error('fail to add user into area'), {
+      route: msg.route,
+      code: consts.MESSAGE.ERR
+    });
+    return;
+  }
+
+  next(null, {
+    code: consts.MESSAGE.RES,
+    data: {
+      area: area.getAreaInfo(),
+      playerId: player.id
+    }
+  });
+};
+
+function initGold(){
+  //TODO
+}
+
+/**
  * Get player's animation data.
  *
  * @param {Object} msg

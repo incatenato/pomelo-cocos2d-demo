@@ -165,9 +165,8 @@ exp.getEntities = function(ids) {
 		if (entity) {
 			result.push(entity);
     }
-	}
-	
-	return result;
+  }
+  return result;
 };
 
 exp.getAllPlayers = function() {
@@ -220,6 +219,16 @@ exp.getAreaInfo = function() {
     height: height
 	};
 };
+
+exp.initAreaInfo = function(){
+  var entities = this.getAllEntities();
+  return {
+    id: id,
+    entities : entities,
+    width: width,
+    height: height
+  };
+}
 
 exp.width = function() {
 	return width;

@@ -40,7 +40,7 @@ var GameLayer = cc.Layer.extend({
         this._control.itemNode.addChild(GameData.roleLayer);
 
         GameData.miniMapLayer = this._control.miniMap;
-        pomeloChat();
+        //pomeloInit();
     },
 
     initData : function () {
