@@ -18,7 +18,8 @@ module.exports = {
 
   EntityType: {
     PLAYER: 'player',
-    TREASURE: 'treasure'
+    TREASURE: 'treasure',
+    GOLD: 'gold'
   }
 
 };

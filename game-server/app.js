@@ -1,12 +1,13 @@
 var pomelo = require('pomelo');
 var area = require('./app/models/area');
 var dataApi = require('./app/util/dataApi');
+var Map = require('./app/models/Map');
 
 /**
  * Init app for client.
  */
 var app = pomelo.createApp();
-app.set('name', 'treasures');
+app.set('name', 'CartoonMan');
 
 app.configure('production|development', 'gate', function(){
   app.set('connectorConfig', {
@@ -33,6 +34,7 @@ app.configure('production|development', 'area', function(){
 
 // start app
 app.start();
+Map.init();
 
 process.on('uncaughtException', function (err) {
   console.error(' Caught exception: ' + err.stack);

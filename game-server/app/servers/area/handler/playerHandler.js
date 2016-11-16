@@ -1,6 +1,7 @@
 // Module dependencies
 var area = require('../../../models/area');
-var Player = require('../../../models/player')
+var Player = require('../../../models/player');
+var Model = require('../../../models/EnterGameSyncModel');
 var Move = require('../../../models/action/move');
 // var channelService = require('pomelo').channelService;
 var logger = require('pomelo-logger').getLogger(__filename);
@@ -22,8 +23,7 @@ var handler = module.exports;
  */
 handler.enterScene = function(msg, session, next) {
   var role = dataApi.role.random();
-  var player = new Player({id: msg.playerId, name: msg.name, kindId: role.id});
-
+  var player = new Player({id: msg.playerId, name: msg.name, kindId: role.id, userId:msg.userId});
   player.serverId = session.frontendId;
   // console.log(player);
 
@@ -40,6 +40,39 @@ handler.enterScene = function(msg, session, next) {
     code: consts.MESSAGE.RES,
     data: {
       area: area.getAreaInfo(), 
+      playerId: player.id
+    }
+  });
+};
+
+/**
+ * 进入房间
+ * @param msg
+ * @param session
+ * @param next
+ */
+handler.enterGame = function(msg, session, next){
+  var role = dataApi.role.random();
+  var model = new Model({enterState:enterState,enrageTag:enrageTag,maxScore:maxScore,maxDeads:maxDeads,
+                         maxKills:maxKills,curContinueKills:curContinueKills,maxContinueKills:maxContinueKills,
+                         curContinueDeads:curContinueDeads,maxContinueDeads:maxContinueDeads});
+  var player = new Player({id: msg.playerId, name: msg.name, kindId: role.id, userId:msg.userId});
+  player.serverId = session.frontendId;
+  // console.log(player);
+
+  if (!area.addEntity(player)) {
+    logger.error("Add player to area faild! areaId : " + player.areaId);
+    next(new Error('fail to add user into area'), {
+      route: msg.route,
+      code: consts.MESSAGE.ERR
+    });
+    return;
+  }
+
+  next(null, {
+    code: consts.MESSAGE.RES,
+    data: {
+      area: area.getAreaInfo(),
       playerId: player.id
     }
   });

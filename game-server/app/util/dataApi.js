@@ -2,6 +2,7 @@
 var area = require('../../config/data/area');
 var role = require('../../config/data/role');
 var treasure = require('../../config/data/treasure');
+var gold = require('../../config/data/gold');
 
 /**
  * Data model `new Data()`
@@ -93,6 +94,7 @@ Data.prototype.all = function() {
 module.exports = {
   area: new Data(area),
   role: new Data(role),
-  treasure: new Data(treasure)
+  treasure: new Data(treasure),
+  gold: new Data(gold)
 };
 

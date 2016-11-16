@@ -8,35 +8,27 @@ var Role = function () {
     this.miniRole = null;
     BaseRole.call(this);
     this.updateCurrTileProperty = function () {
-        if(GameTool.getIslegalForTile(this.position))
-        {
+        if (GameTool.getIslegalForTile(this.position)) {
             var tileGID = GameData.map.getLayer("wallLayer").getTileGIDAt(GameTool.getTilePositionByPosition(this.position));
             // cc.log("tileGid " + tileGID);
-            if(tileGID)
-            {
+            if (tileGID) {
                 this.terminalProperties = GameData.map.getPropertiesForGID(tileGID).type;
             }
-            else
-            {
+            else {
                 this.terminalProperties = 15;
             }
 
         }
         else {
             // this.terminalProperties = 5;
-            if(this.position.x%2 == 1)
-            {
+            if (this.position.x % 2 == 1) {
                 this.terminalProperties = 8;
             }
-            else if (this.position.y%2 == 1)
-            {
+            else if (this.position.y % 2 == 1) {
                 this.terminalProperties = 9;
             }
         }
     };
-
-
-
 
 
     this.updateMoveList = function (moveType) {
@@ -44,29 +36,24 @@ var Role = function () {
         var arrayLength = this.moveArray.length;
 
 
-        switch (this.getRelationBy(moveType,this.moveType))
-        {
+        switch (this.getRelationBy(moveType, this.moveType)) {
             case 0:
-                 if(arrayLength == 2)
-                {
-                    this.moveArray.splice(1,arrayLength -1);
+                if (arrayLength == 2) {
+                    this.moveArray.splice(1, arrayLength - 1);
                 }
                 return;
 
                 break;
             case 1:
-            case 2:
-            {
-                if(arrayLength == 0)
-                {
+            case 2:{
+                if (arrayLength == 0) {
                     this.moveArray.push(moveType);
                 }
-                else if(arrayLength == 1)
-                {
+                else if (arrayLength == 1) {
                     this.moveArray.push(moveType);
                 }
                 else {
-                    this.moveArray.splice(1,arrayLength -1);
+                    this.moveArray.splice(1, arrayLength - 1);
                     this.moveArray.push(moveType);
                 }
             }
@@ -76,15 +63,13 @@ var Role = function () {
         }
 
         arrayLength = this.moveArray.length;
-        if(arrayLength == 1)
-        {
-            if(this.getCanMoveOn(moveType))
-            {
+        if (arrayLength == 1) {
+            if (this.getCanMoveOn(moveType)) {
+                //here
                 this.moveActionByType(moveType);
                 this.updateCurrTileProperty();
             }
-            else
-            {
+            else {
                 this.moveArray.shift();
             }
         }
@@ -95,38 +80,29 @@ var Role = function () {
         this.moveArray.shift();
         var length = this.moveArray.length,
             moveResult = 0, // moveResult 指的是出来 如何移动 //    0 代表停下   1 代表继续往前行走   2 代表走第二个  3 代表继续往前行走 但是第二个还在数组当中
-            nextMoveType = this.moveArray[0] ;
+            nextMoveType = this.moveArray[0];
 
-        if(GameTool.getIslegalForTile(this.position))
-        {
-            if(length == 0)
-            {
-                if(this.getCanMoveOn(this.moveType))
-                {
+        if (GameTool.getIslegalForTile(this.position)) {
+            if (length == 0) {
+                if (this.getCanMoveOn(this.moveType)) {
                     moveResult = 1;
                 }
-                else
-                {
+                else {
                     moveResult = 0;
                 }
             }
-            else if ( length == 1)
-            {
-                if(this.getCanMoveOn(nextMoveType))
-                {
+            else if (length == 1) {
+                if (this.getCanMoveOn(nextMoveType)) {
                     moveResult = 2;
                 }
-                else
-                {
+                else {
                     moveResult = 3;
                 }
             }
         }
         else {
-            if (length == 1)
-            {
-                if(this.getRelationBy(nextMoveType,this.moveType) == 1 )
-                {
+            if (length == 1) {
+                if (this.getRelationBy(nextMoveType, this.moveType) == 1) {
                     moveResult = 2;
                 }
                 else {
@@ -139,19 +115,15 @@ var Role = function () {
         }
 
         // moveResult 指的是出来 如何移动 //    0 代表停下   1 代表继续往前行走   2 代表走第二个  3 代表继续往前行走 但是第二个还在数组当中
-        if(moveResult == 0)
-        {
+        if (moveResult == 0) {
             this.moveType = -1;
         }
-        if(moveResult == 1)
-        {
+        if (moveResult == 1) {
             this.moveArray.push(this.moveType);
             this.moveActionByType(this.moveType);
         }
-        else if(moveResult == 2)
-        {
-            if(this.getCanMoveOn(nextMoveType))
-            {
+        else if (moveResult == 2) {
+            if (this.getCanMoveOn(nextMoveType)) {
                 this.moveActionByType(nextMoveType);
             }
             else {
@@ -159,10 +131,8 @@ var Role = function () {
                 this.moveArray.shift();
             }
 
-        }else if(moveResult == 3)
-        {
-            if(this.getCanMoveOn(this.moveType))
-            {
+        } else if (moveResult == 3) {
+            if (this.getCanMoveOn(this.moveType)) {
                 this.moveArray.unshift(this.moveType);
                 this.moveActionByType(this.moveType);
 
@@ -178,16 +148,13 @@ var Role = function () {
     };
 
 
-
     this.getCanMoveOn = function (moveType) {
 
         var tileProperty = this.terminalProperties, canMove = false;
 
-        if (tileProperty == 15)
-        {
+        if (tileProperty == 15) {
             return true;
-        }else if(tileProperty == 14)
-        {
+        } else if (tileProperty == 14) {
             return false;
         }
 
@@ -222,18 +189,15 @@ var Role = function () {
     // 0 为 相同方向  1 为相反方向   2 为 垂直方向
     this.getRelationBy = function (direction1, direction2) {
 
-        if(direction2 == -1)
-        {
+        if (direction2 == -1) {
             return 2;
         }
 
 
         var type = 0;
-        switch (direction1)
-        {
+        switch (direction1) {
             case 0:
-                switch (direction2)
-                {
+                switch (direction2) {
                     case 0:
                         type = 0;
                         break;
@@ -247,8 +211,7 @@ var Role = function () {
                 }
                 break;
             case 1:
-                switch (direction2)
-                {
+                switch (direction2) {
                     case 0:
                         type = 1;
                         break;
@@ -262,8 +225,7 @@ var Role = function () {
                 }
                 break;
             case 2:
-                switch (direction2)
-                {
+                switch (direction2) {
                     case 0:
                     case 1:
                         type = 2;
@@ -277,8 +239,7 @@ var Role = function () {
                 }
                 break;
             case 3:
-                switch (direction2)
-                {
+                switch (direction2) {
                     case 0:
                     case 1:
                         type = 2;
@@ -295,7 +256,7 @@ var Role = function () {
                 break;
         }
 
-        return type ;
+        return type;
     }
 
 };

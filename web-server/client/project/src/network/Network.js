@@ -60,12 +60,11 @@ NetWork.prototype = {
                         return;
                     }
                     //初始化地图信息
-                    pomelo.request("area.playerHandler.enterScene", {name:this.nickName, playerId:data.playerId, level:this.playerLevel}, function(data){
+                    pomelo.request("area.playerHandler.enterScene", {name:"Hao", playerId:data.playerId, level:3, userId:"jqbwekj123bj901293"}, function(data){
                         //console.log(data.data.area.entities[1].kindName);
                         for (var i in data.data.area.entities){
-                            console.log("gold:" + JSON.stringify(data.data.area.entities[i]));
                             //GameData.addGold(g);
-                            GameData.addGold();
+                            GameData.addGold(data.data.area.entities[i]);
                         }
                     });
                     //setName();
@@ -89,7 +88,6 @@ NetWork.prototype = {
             //        area.addEntity(entities[i]);
             //    }
             //}
-            console.log('addEntities!!! data:' + JSON.stringify(data));
             var player = {};
             player["userId"] = "yangyanfei";
             player["nickname"] = "Hao";

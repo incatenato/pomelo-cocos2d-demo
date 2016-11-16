@@ -6,11 +6,15 @@ logs/*
 !.gitignore
 node_modules/*
 */node_modules/*
-.project
 .settings/
+.idea
 **/*.svn
 *.svn
 *.sublime-project
 *.sublime-workspace
 *.swp
 .DS_Store
+game-server/logs/
+game-server/node_modules/
+node_modules/
+web-server/node_modules/

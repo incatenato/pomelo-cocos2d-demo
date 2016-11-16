@@ -19,6 +19,7 @@ function Entity(opts) {
 	this.kindId = opts.kindId;
 	this.kindName = opts.kindName;
 	this.areaId = opts.areaId || 1;
+    this.pos = opts.pos;
 
   if (opts.x === undefined || opts.y === undefined) {
     this.randPos();
@@ -26,7 +27,10 @@ function Entity(opts) {
     this.x = opts.x;
     this.y = opts.y;
   }
-	
+  //position
+  if (opts.pos == undefined){
+    this.pos = utils.rand(1000, 5000);
+  }
 }
 
 util.inherits(Entity, EventEmitter);

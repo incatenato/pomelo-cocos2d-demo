@@ -16,6 +16,7 @@ var area = require('./area');
 function Player(opts) {
   Entity.call(this, opts);
 	this.id = opts.id;
+    this.userId = opts.userId;
 	this.type = EntityType.PLAYER;
 	this.name = opts.name;
   this.walkSpeed = 240;
@@ -42,6 +43,7 @@ Player.prototype.addScore = function (score) {
 Player.prototype.toJSON = function() {
   return {
     id: this.id,
+    userId: this.userId,
     entityId: this.entityId,
     name: this.name,
     kindId: this.kindId,

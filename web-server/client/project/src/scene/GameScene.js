@@ -25,14 +25,8 @@ var GameLayer = cc.Layer.extend({
         this.addMapBG();
         this.addTileMap();
         this.addCustomListener();
-        /***杨延飞-begin***/
         GameData._msgLayer = new MsgLayer();
         this.addChild(GameData._msgLayer);
-        // // this.schedule(function(){
-        // //     GameData._msgLayer.sendGetAllInfoMsg();
-        // // },10);
-        // GameData._msgLayer.sendGetAllInfoMsg();
-        /***杨延飞-end***/
         GameData.diamondLayer = new cc.Layer();
         this._control.itemNode.addChild(GameData.diamondLayer);
 
@@ -127,29 +121,23 @@ var GameLayer = cc.Layer.extend({
             touchPos = touch.getLocation(),
 
         offsetPos = cc.pSub(touchPos, this._touchMoveBeginPos);
-        if(Math.abs(offsetPos.x)>Math.abs(offsetPos.y))
-        {
-            if(offsetPos.x > 0)
-            {
+        if(Math.abs(offsetPos.x)>Math.abs(offsetPos.y)) {
+            if(offsetPos.x > 0) {
                 moveType = 0;
             }
-            else
-            {
+            else {
                 moveType = 1;
             }
         }
         else{
-            if(offsetPos.y > 0)
-            {
+            if(offsetPos.y > 0) {
                 moveType = 2;
             }
-            else
-            {
+            else {
                 moveType = 3;
             }
         }
-        if(GameData.myRole)
-        {
+        if(GameData.myRole) {
             GameData.myRole.updateMoveList(moveType);
         }
     },
