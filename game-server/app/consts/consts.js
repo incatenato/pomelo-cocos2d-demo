@@ -16,6 +16,21 @@ module.exports = {
     PUSH: 600
   },
 
+  /**
+   * 玩家状态
+   */
+  PLAYER_STATE: {
+    NORMAL: 0, //不知道
+    ENRAGE: 1, //不知道
+    DEAD: 2    //死亡
+  },
+
+  ENTER_STATE: {
+    NORMAL: 0,
+    TEAM_LIMIT: 1,
+    ROOM_LIMIT: 2
+  },
+
   EntityType: {
     PLAYER: 'player',
     TREASURE: 'treasure',

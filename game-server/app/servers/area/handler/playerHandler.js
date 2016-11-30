@@ -11,7 +11,7 @@ var dataApi = require('../../../util/dataApi');
 var fs = require('fs');
 
 var handler = module.exports;
-
+//TODO: 该改造这个了。
 /**
  * Player enter scene, and response the related information such as
  * playerInfo, areaInfo and mapData to client.
@@ -28,7 +28,7 @@ handler.enterScene = function(msg, session, next) {
   // console.log(player);
 
   if (!area.addEntity(player)) {
-    logger.error("Add player to area faild! areaId : " + player.areaId);
+    logger.error("Add player to area failed! areaId : " + player.areaId);
     next(new Error('fail to add user into area'), {
       route: msg.route,
       code: consts.MESSAGE.ERR
